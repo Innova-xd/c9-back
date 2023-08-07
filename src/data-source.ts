@@ -18,6 +18,7 @@ const options: DataSourceOptions & SeederOptions = {
     migrations: [`${__dirname}/**/migration/*.ts`],
     seeds: [MainSeeder],
     subscribers: [],
+    ssl: true,
 }
 
 export const AppDataSource = new DataSource(options)
