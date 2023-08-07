@@ -10,7 +10,6 @@
     "migration:generate": "npm run typeorm -- migration:generate ./src/migration/default",
     "migration:run": "npm run typeorm -- migration:run",
     "seed": "ts-node ./node_modules/typeorm-extension/dist/cli/index.js seed -d ./src/data-source.ts",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "typeorm": "typeorm-ts-node-commonjs -d ./src/data-source.ts",
     "back-start": "sudo docker compose up -d && npm run migration:run && npm run seed && npm run dev",
     "back-stop": "sudo docker-compose down"
