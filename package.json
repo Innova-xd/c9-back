@@ -6,6 +6,7 @@
   "scripts": {
     "start": "NODE_ENV=production node ./index.js --inspect",
     "dev": "nodemon -w *.ts -w .env src/index.ts",
+    "build": "tsc",
     "db:drop": "npm run typeorm -- schema:drop",
     "migration:generate": "npm run typeorm -- migration:generate ./src/migration/default",
     "migration:run": "npm run typeorm -- migration:run",
