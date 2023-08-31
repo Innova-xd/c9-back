@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'innovaxdbackend'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_21C8F9F85D454CF988AADC42D5D760B6 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2C816A945140473C9D35E56A782FEFA2 }}
           package: .
