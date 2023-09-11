@@ -23,7 +23,7 @@ jobs:
 
       - name: Set up PostgreSQL environment variables
         uses: einaregilsson/set-env-vars@v1
-        env:
+        with:
           POSTGRES_HOST: containers-us-west-163.railway.app
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: IpuHlkgSkkD9lZDoIvWq
