@@ -22,6 +22,7 @@ jobs:
           node-version: '16.x'
 
       - name: Set up PostgreSQL environment variables
+        uses: einaregilsson/set-env-vars@v1
         env:
           POSTGRES_HOST: containers-us-west-163.railway.app
           POSTGRES_USER: postgres
