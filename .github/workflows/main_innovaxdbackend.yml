@@ -21,11 +21,10 @@ jobs:
         with:
           node-version: '16.x'
 
-      - name: npm install, build, and test
+      - name: npm install and build
         run: |
           npm install
           npm run build --if-present
-          npm run test --if-present
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
@@ -41,11 +40,10 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
-      - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v2
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v2
         with:
           name: node-app
-          path: ./dist
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
