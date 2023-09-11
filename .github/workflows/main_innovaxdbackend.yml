@@ -21,6 +21,14 @@ jobs:
         with:
           node-version: '16.x'
 
+      - name: Set up PostgreSQL environment variables
+        env:
+          POSTGRES_HOST: containers-us-west-163.railway.app
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: IpuHlkgSkkD9lZDoIvWq
+          POSTGRES_DB: railway
+          POSTGRES_PORT: 5865
+
       - name: npm install and build
         run: |
           npm install
