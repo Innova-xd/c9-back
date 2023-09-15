@@ -30,6 +30,9 @@ export class User {
   @Column({ default: false })
   enabled: boolean;
 
+  @Column({ default: false })
+  isTeacher: boolean;
+
   @OneToMany(() => Publication, (publication) => publication.user, {
     nullable: true,
   })

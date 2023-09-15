@@ -36,6 +36,7 @@ AppDataSource.initialize()
     // app.use(passport.session());
 
     app.use(cors());
+    app.use(express.json())
     app.use(morgan('tiny'));
     app.use(bodyParser.json());
     app.use(

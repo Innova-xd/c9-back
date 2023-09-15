@@ -8,6 +8,7 @@ type JWTData = {
    username: string;
    email: string;
    isAdmin: boolean;
+   isTeacher: boolean;
    iat: number;
    exp: number;
 };
@@ -34,6 +35,7 @@ function generateJWT(user: User): string {
       username: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
+      isTeacher: user.isTeacher,
       iat: currentDate.getTime(),
       exp: expirationDate.getTime(),
    };

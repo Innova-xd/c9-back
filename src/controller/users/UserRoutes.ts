@@ -7,6 +7,7 @@ import validationReqSchema from '../middlewares/validations';
 import { isAdmin } from '../middlewares/isAdmin';
 
 import passport from '../../config/passport';
+import { isAuthenticated } from '../middlewares/isAuthenticated';
 
 /**
  * @swagger
@@ -118,58 +119,71 @@ import passport from '../../config/passport';
  */
 
 userRouter.get('/users', isAdmin, userController.all);
+
 userRouter.get(
-  '/users/:id',
-  isAdmin,
-  validationReqSchema([param('id').isInt()]),
-  userController.one
+	'/users/:id',
+	isAdmin,
+	validationReqSchema([param('id').isInt()]),
+	userController.one
 );
+
+userRouter.get(
+	'/users/profile/:id',
+	validationReqSchema([param('id').isString()]),
+	userController.oneForProfile
+);
+
 userRouter.get('/users/:username', userController.oneByUsername);
+
 userRouter.get(
-  '/users/email/:email',
-  // isAdmin,
-  userController.oneByEmail
+	'/users/email/:email',
+	// isAdmin,
+	userController.oneByEmail
 );
+
 userRouter.post(
-  '/users',
-  isAdmin,
-  validationReqSchema([body('name').isString(), body('email').isString()]),
-  userController.save
+	'/users',
+	isAdmin,
+	validationReqSchema([body('name').isString(), body('email').isString()]),
+	userController.save
 );
+
 userRouter.post(
-  '/users/auth',
-  validationReqSchema([body('email').isString(), body('password').isString()]),
-  userController.checkAuth
-),
-  userRouter.post(
-    '/users/confirm',
-    isAdmin,
-    validationReqSchema([
-      body('password').isString().withMessage('Password must be a string'),
-      body('token').isString().withMessage('Token must be a string'),
-    ]),
-    userController.confirm
-  ),
-  userRouter.put(
-    '/users/:id',
-    isAdmin,
-    validationReqSchema([
-      body('name').isString().optional(),
-      body('enabled').isBoolean().optional(),
-    ]),
-    userController.update
-  );
+	'/users/auth',
+	validationReqSchema([body('email').isString(), body('password').isString()]),
+	userController.checkAuth
+);
+
+userRouter.post(
+	'/users/confirm',
+	isAdmin,
+	validationReqSchema([
+		body('password').isString().withMessage('Password must be a string'),
+		body('token').isString().withMessage('Token must be a string'),
+	]),
+	userController.confirm
+);
+
+userRouter.put(
+	'/users/:id',
+	isAdmin,
+	validationReqSchema([
+		body('name').isString().optional(),
+		body('enabled').isBoolean().optional(),
+	]),
+	userController.update
+);
 
 // linkedin
 userRouter.get('/auth/linkedin', passport.authenticate('linkedin'));
 
 userRouter.get(
-  '/auth/linkedin/callback',
-  passport.authenticate('linkedin', { failureRedirect: '/' }),
-  function (req, res) {
-    // el campo req.user contiene el token res.send(req.user);
-    res.redirect(`${process.env.FRONT_URL}/loginLinkedin/${req.user}`);
-  }
+	'/auth/linkedin/callback',
+	passport.authenticate('linkedin', { failureRedirect: '/' }),
+	function (req, res) {
+		// el campo req.user contiene el token res.send(req.user);
+		res.redirect(`${process.env.FRONT_URL}/loginLinkedin/${req.user}`);
+	}
 );
 
 export default userRouter;

@@ -41,6 +41,7 @@ passport.use(
         username: currentUser.name,
         email: currentUser.email,
         isAdmin: currentUser.isAdmin,
+        isTeacher: currentUser.isTeacher,
         iat: currentDate.getTime(),
         exp: expirationDate.getTime(),
       };

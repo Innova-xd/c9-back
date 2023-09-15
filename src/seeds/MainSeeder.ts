@@ -7,6 +7,8 @@ import { CategorySeeder } from "./CategorySeeder";
 import { RegionSeeder } from "./regionSeeder";
 import { CitySeeder } from "./citySeeder";
 import { AuthorSeeder } from './AuthorSeeder';
+import { ChatSeeder } from './ChatSeeder'
+import { MessagesSeeder } from "./MessagesSeeder";
 
 export class MainSeeder implements Seeder {
   async run(
@@ -20,5 +22,7 @@ export class MainSeeder implements Seeder {
     await runSeeder(dataSource, QuestionSeeder);
     await runSeeder(dataSource, RegionSeeder);
     await runSeeder(dataSource, CitySeeder);
+    await runSeeder(dataSource, ChatSeeder);
+    await runSeeder(dataSource, MessagesSeeder);
   }
 }

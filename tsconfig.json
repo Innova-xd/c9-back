@@ -1,5 +1,4 @@
-{
-   "compilerOptions": {
+{ "compilerOptions": {
       "lib": [
          "es5",
          "es6"
