@@ -10,6 +10,10 @@ const entitiesPath = isProduction
   ? `${__dirname}/**/entity/*.js`
   : `${__dirname}/**/entity/*.ts`;
 
+const migrationsPath = isProduction
+  ? `${__dirname}/**/migration/*.js`
+  : `${__dirname}/**/migration/*.ts`;
+
 const options: DataSourceOptions & SeederOptions = {
   type: 'postgres',
   host: process.env.POSTGRES_HOST,
@@ -20,7 +24,7 @@ const options: DataSourceOptions & SeederOptions = {
   synchronize: false,
   logging: false,
   entities: [entitiesPath],
-  migrations: [`${__dirname}/**/migration/*.ts`],
+  migrations: [migrationsPath],
   seeds: [MainSeeder],
   subscribers: [],
   ssl: true,
