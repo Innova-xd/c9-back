@@ -15,6 +15,7 @@ export class CityController {
       }
       return response.status(200).json(cities);
     } catch (error) {
+      console.log('error', error);
       return response.status(500).json({
         message: 'Ha ocurrido un error obteniendo todas las Comunas: ',
         error: error.detail,
