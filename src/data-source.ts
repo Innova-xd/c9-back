@@ -27,7 +27,7 @@ const options: DataSourceOptions & SeederOptions = {
   migrations: [migrationsPath],
   seeds: [MainSeeder],
   subscribers: [],
-  ssl: true,
+  ssl: isProduction ? true : false,
 };
 
 export const AppDataSource = new DataSource(options);
