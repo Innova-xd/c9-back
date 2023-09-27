@@ -10,7 +10,7 @@ const generateMessagesForPrompt = (
 ): { role: 'assistant' | 'user' | 'system'; content: string }[] => [
   {
     role: 'system',
-    content: `Eres un asistente amigable para estudiantes niños y jovenes, que usa la siguiente noticia para resolver dudas o generar texto que pida el estudiante.\nNoticia : \n "${publicationContent}".\n solo puedes responder preguntas relacionadas a la noticia`
+    content: `Eres un asistente amigable para estudiantes y docentes, que usa la siguiente noticia para resolver dudas, generar texto que pida el estudiante o generar trabajos que pueda solicitar el docente.\nNoticia : \n "${publicationContent}".\n solo puedes responder preguntas relacionadas a la noticia`
   },
   {
     role: 'user',
