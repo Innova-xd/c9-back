@@ -5,7 +5,7 @@ const openai = new OpenAI({
   apiKey: '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
 });
 
-//'process.env.OPENAI_API_KEY
+
 
 
 const generateMessagesForPrompt = (
