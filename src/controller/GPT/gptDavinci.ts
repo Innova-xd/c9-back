@@ -8,7 +8,7 @@ gptDavinciRouter.post('/davinci',  async  (req: Request, res: Response)  => {
     const options = {
         method: "POST",
         headers: {
-            "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
+            "Authorization": `Bearer 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`,
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
