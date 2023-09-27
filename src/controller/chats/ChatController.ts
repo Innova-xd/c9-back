@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import OpenAI from 'openai';
 
 const openai = new OpenAI({
-  apiKey: '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'
+  apiKey: process.env.OPENAI_API_KEY
 });
 
 const generateMessagesForPrompt = (
