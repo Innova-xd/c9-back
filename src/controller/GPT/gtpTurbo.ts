@@ -24,7 +24,8 @@ try {
     const data = await response.json()
     res.send(data)
 } catch (error) {
-    console.error(error)
+    console.error(options)
+    //console.error(error)
 }
 })
 
