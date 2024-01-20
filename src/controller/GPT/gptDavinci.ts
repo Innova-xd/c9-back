@@ -12,7 +12,7 @@ gptDavinciRouter.post('/davinci',  async  (req: Request, res: Response)  => {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            model : "text-davinci-003",
+            model : "gpt-3.5-turbo",
             prompt: req.body.prompt,
             max_tokens: req.body.max_tokens,
             n: req.body.n,
