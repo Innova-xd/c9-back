@@ -14,8 +14,7 @@ gptTurboRouter.post('/turbo',  async  (req: Request, res: Response)  => {
         },
         body: JSON.stringify({
             model : "gpt-3.5-turbo",
-            messages: [{role: "user", content: req.body.message}],
-            max_tokens: 4096,
+            messages: [{role: "user", content: req.body.message}]
         })
     }
   
