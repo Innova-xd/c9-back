@@ -13,7 +13,7 @@ gptTurboRouter.post('/turbo',  async  (req: Request, res: Response)  => {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            model : "gpt-3.5-turbo",
+            model : "gpt-4-0125-preview",
             messages: [{role: "user", content: req.body.message}]
         })
     }
