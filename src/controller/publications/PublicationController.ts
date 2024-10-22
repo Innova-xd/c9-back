@@ -656,4 +656,53 @@ export class PublicationController {
       });
     }
   };
+  
+  public getByCategory= async (
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ) => {
+    try {
+      const category = parseInt(request.params.category); 
+
+      if (isNaN(category)) {
+        return response.status(400).json({
+          message: 'El ID de la categoría debe ser un número válido.',
+        });
+      }
+
+      const publications = await this.publicationRepository.find({
+        where: { category: {id: category } },
+        relations: ['user', 'questions', 'category', 'author'],
+        select: {
+          user: {
+            name: true,
+            username: true,
+          },
+          questions: {
+            question: true,
+            answer: true,
+          },
+          author: {
+            name: true,
+          },
+        },
+        order: {
+          featured: 'desc',
+          fecha_publicacion: 'desc',
+        },
+      });
+
+      const publicationDTOs = asDTOs(publications);
+      return response.status(200).json(publicationDTOs);
+    } catch (error) {
+      console.log(error);
+      return response.status(400).json({
+        message:
+          'Ha ocurrido un error obteniendo las Publicaciones por categoria',
+        error: error.detail,
+      });
+    }
+  };
+
 }
