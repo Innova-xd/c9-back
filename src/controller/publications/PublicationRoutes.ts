@@ -168,6 +168,10 @@ publicationRouter.get(
   "/publications/allByKeyword/:keyword",
   publicationController.getByKeyword
 );
+publicationRouter.get(
+  "/publications/category/:category",
+  publicationController.getByCategory
+);
 
 publicationRouter.get("/categories", publicationController.getAllCategories);
 publicationRouter.get("/regions", publicationController.getAllRegions);
