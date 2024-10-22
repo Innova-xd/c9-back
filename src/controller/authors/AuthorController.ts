@@ -12,7 +12,8 @@ export class AuthorController {
          if (!authors) {
             return response.status(404).json({message: 'No hay autores.'});
          }
-         return response.status(200).json(authors);
+         const authorsOrderByName = authors.sort((a, b) => a.name.localeCompare(b.name));
+         return response.status(200).json(authorsOrderByName);
       } catch (error) {
          return response.status(500).json({ message: "Ha ocurrido un error obteniendo todos los Autores: ", error: error.detail });
       }
