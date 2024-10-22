@@ -266,7 +266,7 @@ export class PublicationController {
         initialContent,
         finalContent,
         finalContent_EN: finalContent_en,
-        category: category[0] || null,
+        category,
         location,
         published: published ? JSON.parse(published) : undefined,
         fecha_publicacion: new Date(fecha_publicacion),
