@@ -705,4 +705,45 @@ export class PublicationController {
     }
   };
 
+  public getByRegionId = async (
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ) => {
+    try {
+      const regionId = parseInt(request.params.regionId);
+  
+      if (isNaN(regionId)) {
+        return response.status(400).json({ message: 'ID de región no válido' });
+      }
+  
+      // Usamos el QueryBuilder con un alias específico para la tabla Publication
+      const publications = await this.publicationRepository
+        .createQueryBuilder("publication")  // Alias correcto para la tabla "publication"
+        .leftJoinAndSelect("publication.user", "user")
+        .leftJoinAndSelect("publication.questions", "questions")
+        .leftJoinAndSelect("publication.category", "category")
+        .leftJoinAndSelect("publication.author", "author")
+        .where('publication.location->>\'regionId\' = :regionId', { regionId: regionId })
+        .orderBy('publication.featured', 'DESC')
+        .addOrderBy('publication.fecha_publicacion', 'DESC')
+        .getMany();
+  
+      if (publications.length === 0) {
+        return response.status(404).json({ message: 'No se encontraron publicaciones para esta región' });
+      }
+  
+      const publicationDTOs = asDTOs(publications);
+  
+      return response.status(200).json(publicationDTOs);
+    } catch (error) {
+      console.log(error);
+      return response.status(400).json({
+        message: 'Ha ocurrido un error obteniendo las publicaciones por región',
+        error: error.detail,
+      });
+    }
+  };
+  
+
 }

@@ -172,6 +172,10 @@ publicationRouter.get(
   "/publications/category/:category",
   publicationController.getByCategory
 );
+publicationRouter.get(
+  "/publications/region/:regionId",
+  publicationController.getByRegionId
+);
 
 publicationRouter.get("/categories", publicationController.getAllCategories);
 publicationRouter.get("/regions", publicationController.getAllRegions);
