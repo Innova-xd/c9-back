@@ -178,6 +178,8 @@ publicationRouter.get(
 );
 
 publicationRouter.get("/categories", publicationController.getAllCategories);
+publicationRouter.post("/categories", isAuthenticated,publicationController.createCategory);
+
 publicationRouter.get("/regions", publicationController.getAllRegions);
 
 export default publicationRouter;

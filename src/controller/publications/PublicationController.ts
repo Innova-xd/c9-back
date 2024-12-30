@@ -579,6 +579,52 @@ export class PublicationController {
     }
   };
 
+/**
+ * Crea una nueva categoría.
+ * @param request - La solicitud HTTP que contiene los datos de la categoría.
+ * @param response - La respuesta HTTP que se enviará al cliente.
+ * @param next - La función que se llamará después de que se complete la operación.
+ * @returns El objeto de la nueva categoría creada.
+ */
+public createCategory = async (
+  request: Request,
+  response: Response,
+  next: NextFunction
+) => {
+  try {
+    const { name } = request.body; // Se asume que solo se recibe 'name'
+
+    // Validación básica
+    if (!name) {
+      return response.status(400).json({
+        message: 'El nombre de la categoría es requerido',
+      });
+    }
+
+    const categoryRepository = AppDataSource.getRepository(Category);
+
+    // Crear la nueva categoría
+    const newCategory = categoryRepository.create({
+      name,
+    });
+
+    // Guardar la nueva categoría en la base de datos
+    await categoryRepository.save(newCategory);
+
+    // Retornar la categoría recién creada, con su id y name
+    return response.status(201).json({
+      id: newCategory.id,
+      name: newCategory.name,
+    });
+  } catch (error) {
+    console.log(error);
+    return response.status(400).json({
+      message: 'Ha ocurrido un error creando la categoría',
+      error: error.message,
+    });
+  }
+};
+
   /**
    * Obtiene todas las regiones y sus comunas.
    * @param request - La solicitud HTTP que se está procesando.
